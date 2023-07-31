@@ -30,12 +30,24 @@ class AppCubits extends Cubit<CubitState> {
 
   Future addHouse() async {
     final List<House> list = List.from(state.houses);
-    final newHouse = House(id: list.last.id + 1);
-    list.add(House(id: list.last.id + 1));
+    final doc = FirebaseFirestore.instance.collection("House_list").doc();
+    final newHouse = House(id: list.last.id + 1, docId: doc.id);
+    list.add(newHouse);
     await FirebaseFirestore.instance
         .collection("House_list")
         .doc(newHouse.docId)
         .set(newHouse.toJson());
+    emit(state.copyWith(houses: list));
+  }
+
+  Future removeHouse() async {
+    final List<House> list = List.from(state.houses);
+    final house = list.last;
+    list.removeLast();
+    await FirebaseFirestore.instance
+        .collection("House_list")
+        .doc(house.docId)
+        .delete();
     emit(state.copyWith(houses: list));
   }
 

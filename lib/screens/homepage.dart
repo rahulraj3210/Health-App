@@ -26,6 +26,14 @@ class HomePage extends StatelessWidget {
                   BlocProvider.of<AppCubits>(context).totalCluster();
                 },
               ),
+              TextButton(
+                  onPressed: () {
+                    BlocProvider.of<AppCubits>(context).removeHouse();
+                  },
+                  child: Text(
+                    "DELETE",
+                    style: TextStyle(color: Colors.red),
+                  )),
             ],
           ),
           body: GridView.builder(
