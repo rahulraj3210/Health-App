@@ -3,7 +3,7 @@ Our aim is to enable users to view all the houses in a block, along with the tot
 
 In this Project i have provided:
 
-1) Provide the number of houses, infected houses and infected clusters in each block.
+1) The number of houses, infected houses and infected clusters in each block.
 
 2) Upon tapping on a block, visually represent the block as a grid with infected houses marked in red.
 
