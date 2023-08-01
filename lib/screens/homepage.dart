@@ -39,27 +39,29 @@ class HomePage extends StatelessWidget {
                   )),
             ],
           ),
-          body: Column(
-            children: [
-              ListTile(
-                title: Text("Total Clusters = ${state.totalCluster}"),
-              ),
-              GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 10, // Number of columns in the grid
-                  crossAxisSpacing: 3.0, // Spacing between columns
-                  mainAxisSpacing: 3.0, // Spacing between rows
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text("Total Clusters = ${state.totalCluster}"),
                 ),
-                itemCount: state.houses.length,
-                itemBuilder: (context, index) {
-                  return BlockItem(
-                    data: state.houses[index],
-                    index: index,
-                  );
-                },
-              ),
-            ],
+                GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 10, // Number of columns in the grid
+                    crossAxisSpacing: 3.0, // Spacing between columns
+                    mainAxisSpacing: 3.0, // Spacing between rows
+                  ),
+                  itemCount: state.houses.length,
+                  itemBuilder: (context, index) {
+                    return BlockItem(
+                      data: state.houses[index],
+                      index: index,
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },
