@@ -25,6 +25,7 @@ class AppCubits extends Cubit<CubitState> {
     readhouse().listen((housee) {
       housee.sort((a, b) => a.id.compareTo(b.id));
       emit(state.copyWith(houses: housee));
+      totalCluster();
     });
   }
 
@@ -267,6 +268,7 @@ class AppCubits extends Cubit<CubitState> {
       print(checkedHouses);
     }
     print(checkedHouses.length);
+    totalCluster();
   }
 
   void totalCluster() {
@@ -451,8 +453,8 @@ class AppCubits extends Cubit<CubitState> {
           }
           notCheckedHouse.remove(house);
           checkedHouses.add(house);
-          print(notCheckedHouse);
-          print(checkedHouses);
+          //print(notCheckedHouse);
+          //print(checkedHouses);
         }
         count = count + 1;
         //newCheckedHouse.addAll(checkedHouses);
@@ -460,5 +462,6 @@ class AppCubits extends Cubit<CubitState> {
     });
     print('Count');
     print(count);
+    emit(state.copyWith(totalCluster: count));
   }
 }

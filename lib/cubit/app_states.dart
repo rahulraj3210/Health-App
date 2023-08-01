@@ -6,5 +6,6 @@ class CubitState with _$CubitState {
 
   const factory CubitState({
     @Default([]) List<House> houses,
+    @Default(0) int totalCluster,
   }) = _CubitState;
 }

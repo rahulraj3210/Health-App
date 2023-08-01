@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Block View'),
+            title: Text('City View'),
             actions: [
               TextButton(
                   onPressed: () {
@@ -20,8 +20,11 @@ class HomePage extends StatelessWidget {
                     "ADD",
                     style: TextStyle(color: Colors.green),
                   )),
-              IconButton(
-                icon: Icon(Icons.details),
+              TextButton(
+                child: Text(
+                  "Cluster",
+                  style: TextStyle(color: Colors.red),
+                ),
                 onPressed: () {
                   BlocProvider.of<AppCubits>(context).totalCluster();
                 },
@@ -36,19 +39,27 @@ class HomePage extends StatelessWidget {
                   )),
             ],
           ),
-          body: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 10, // Number of columns in the grid
-              crossAxisSpacing: 3.0, // Spacing between columns
-              mainAxisSpacing: 3.0, // Spacing between rows
-            ),
-            itemCount: state.houses.length,
-            itemBuilder: (context, index) {
-              return BlockItem(
-                data: state.houses[index],
-                index: index,
-              );
-            },
+          body: Column(
+            children: [
+              ListTile(
+                title: Text("Total Clusters = ${state.totalCluster}"),
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 10, // Number of columns in the grid
+                  crossAxisSpacing: 3.0, // Spacing between columns
+                  mainAxisSpacing: 3.0, // Spacing between rows
+                ),
+                itemCount: state.houses.length,
+                itemBuilder: (context, index) {
+                  return BlockItem(
+                    data: state.houses[index],
+                    index: index,
+                  );
+                },
+              ),
+            ],
           ),
         );
       },
