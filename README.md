@@ -1,35 +1,14 @@
-<<<<<<< HEAD
-# health_app
+Here in this project i have developed a Flutter app that will aid in monitoring a city for clusters of affected areas.The houses within each block are arranged in a grid pattern and each house is assigned a unique identifier in the format H1, where H1 represents the house number.
+Our aim is to enable users to view all the houses in a block, along with the total number of houses, infected houses, and number of infected clusters in each block. An infected cluster is defined as a group of infected houses that are adjacent to at least one other house in the same group.
 
-A new Flutter project.
+In this Project i have provided:
 
-## Getting Started
+1) Provide the number of houses, infected houses and infected clusters in each block.
 
-This project is a starting point for a Flutter application.
+2) Upon tapping on a block, visually represent the block as a grid with infected houses marked in red.
 
-A few resources to get you started if this is your first Flutter project:
+3) A house can be marked as infected just by tapping on it. Tapping on it again should clear the infected status.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+4) Design the model to store all relevant data in Firestore #FirestoreModelDesign.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# health_app
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> 172b26e (first commit)
+5) Implement real-time updates from Firebase and manage the state using Cubits #FirebaseUpdates #StateManagement.
