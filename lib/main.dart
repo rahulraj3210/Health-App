@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_app/cubit/app_cubits.dart';
 import 'package:health_app/cubit/app_cubits_logic.dart';
 import 'package:health_app/screens/homepage.dart';
+import 'screens/blockview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,9 +40,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.orange,
         ),
-        home: BlocProvider<AppCubits>(
-          create: (context) => AppCubits(),
-          child: AppCubitLogics(),
-        ));
+        home: BlockView());
   }
 }
