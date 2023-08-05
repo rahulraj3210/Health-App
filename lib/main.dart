@@ -35,11 +35,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'first',
-        theme: ThemeData(
-          primarySwatch: Colors.orange,
-        ),
-        home: BlockView());
+      debugShowCheckedModeBanner: false,
+      title: 'first',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+      ),
+      home: BlocProvider<AppCubits>(
+        create: (context) => AppCubits(),
+        child: BlockView(),
+      ),
+    );
   }
 }

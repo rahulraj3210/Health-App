@@ -16,31 +16,45 @@ class BlockView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('BLOCK VIEW'),
-      ),
-      body: Card(
-        child: ListTile(
-          title: Text('Block A'),
-          leading: Image(
-            image: NetworkImage(
-                'https://upload.wikimedia.org/wikipedia/commons/d/da/Willard_Richmond_Apartment_Block_Worcester_MA.jpg'),
-          ),
-          trailing: Icon(Icons.arrow_forward_rounded),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BlocProvider<AppCubits>(
-                  create: (context) => AppCubits(),
-                  child: AppCubitLogics(),
-                ),
-              ),
-            );
-          },
-        ),
-      ),
+    return BlocBuilder<AppCubits, CubitState>(
+      builder: (context, state) {
+        print(state.blocks.length);
+        return Scaffold(
+            appBar: AppBar(
+              title: Text('BLOCK VIEW'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      BlocProvider.of<AppCubits>(context).addBlock();
+                    },
+                    child: Text(
+                      "ADD",
+                      style: TextStyle(color: Colors.green),
+                    ))
+              ],
+            ),
+            body: ListView.builder(
+              itemBuilder: (context, index) {
+                final block = state.blocks[index];
+                print(block);
+                return ListTile(
+                  title: Text("Block Number =${block.id}"),
+                  onTap: () {
+                    BlocProvider.of<AppCubits>(context).setCurrentBlock(index);
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                                  value: BlocProvider.of<AppCubits>(context),
+                                  child: HomePage(),
+                                )));
+                  },
+                );
+              },
+              itemCount: state.blocks.length,
+            ));
+      },
     );
   }
 }

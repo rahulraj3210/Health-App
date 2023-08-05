@@ -5,7 +5,7 @@ class CubitState with _$CubitState {
   const CubitState._();
 
   const factory CubitState({
-    @Default([]) List<House> houses,
-    @Default(0) int totalCluster,
+    @Default([]) List<Block> blocks,
+    @Default(0) int currentBlockIndex,
   }) = _CubitState;
 }

@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CubitState {
-  List<House> get houses => throw _privateConstructorUsedError;
-  int get totalCluster => throw _privateConstructorUsedError;
+  List<Block> get blocks => throw _privateConstructorUsedError;
+  int get currentBlockIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CubitStateCopyWith<CubitState> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $CubitStateCopyWith<$Res> {
           CubitState value, $Res Function(CubitState) then) =
       _$CubitStateCopyWithImpl<$Res, CubitState>;
   @useResult
-  $Res call({List<House> houses, int totalCluster});
+  $Res call({List<Block> blocks, int currentBlockIndex});
 }
 
 /// @nodoc
@@ -46,17 +46,17 @@ class _$CubitStateCopyWithImpl<$Res, $Val extends CubitState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? houses = null,
-    Object? totalCluster = null,
+    Object? blocks = null,
+    Object? currentBlockIndex = null,
   }) {
     return _then(_value.copyWith(
-      houses: null == houses
-          ? _value.houses
-          : houses // ignore: cast_nullable_to_non_nullable
-              as List<House>,
-      totalCluster: null == totalCluster
-          ? _value.totalCluster
-          : totalCluster // ignore: cast_nullable_to_non_nullable
+      blocks: null == blocks
+          ? _value.blocks
+          : blocks // ignore: cast_nullable_to_non_nullable
+              as List<Block>,
+      currentBlockIndex: null == currentBlockIndex
+          ? _value.currentBlockIndex
+          : currentBlockIndex // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -70,7 +70,7 @@ abstract class _$$_CubitStateCopyWith<$Res>
       __$$_CubitStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<House> houses, int totalCluster});
+  $Res call({List<Block> blocks, int currentBlockIndex});
 }
 
 /// @nodoc
@@ -84,17 +84,17 @@ class __$$_CubitStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? houses = null,
-    Object? totalCluster = null,
+    Object? blocks = null,
+    Object? currentBlockIndex = null,
   }) {
     return _then(_$_CubitState(
-      houses: null == houses
-          ? _value.houses
-          : houses // ignore: cast_nullable_to_non_nullable
-              as List<House>,
-      totalCluster: null == totalCluster
-          ? _value.totalCluster
-          : totalCluster // ignore: cast_nullable_to_non_nullable
+      blocks: null == blocks
+          ? _value.blocks
+          : blocks // ignore: cast_nullable_to_non_nullable
+              as List<Block>,
+      currentBlockIndex: null == currentBlockIndex
+          ? _value.currentBlockIndex
+          : currentBlockIndex // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -103,19 +103,19 @@ class __$$_CubitStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CubitState extends _CubitState {
-  const _$_CubitState({this.houses = const [], this.totalCluster = 0})
+  const _$_CubitState({this.blocks = const [], this.currentBlockIndex = 0})
       : super._();
 
   @override
   @JsonKey()
-  final List<House> houses;
+  final List<Block> blocks;
   @override
   @JsonKey()
-  final int totalCluster;
+  final int currentBlockIndex;
 
   @override
   String toString() {
-    return 'CubitState(houses: $houses, totalCluster: $totalCluster)';
+    return 'CubitState(blocks: $blocks, currentBlockIndex: $currentBlockIndex)';
   }
 
   @override
@@ -123,14 +123,14 @@ class _$_CubitState extends _CubitState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CubitState &&
-            const DeepCollectionEquality().equals(other.houses, houses) &&
-            (identical(other.totalCluster, totalCluster) ||
-                other.totalCluster == totalCluster));
+            const DeepCollectionEquality().equals(other.blocks, blocks) &&
+            (identical(other.currentBlockIndex, currentBlockIndex) ||
+                other.currentBlockIndex == currentBlockIndex));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(houses), totalCluster);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(blocks), currentBlockIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -141,13 +141,13 @@ class _$_CubitState extends _CubitState {
 
 abstract class _CubitState extends CubitState {
   const factory _CubitState(
-      {final List<House> houses, final int totalCluster}) = _$_CubitState;
+      {final List<Block> blocks, final int currentBlockIndex}) = _$_CubitState;
   const _CubitState._() : super._();
 
   @override
-  List<House> get houses;
+  List<Block> get blocks;
   @override
-  int get totalCluster;
+  int get currentBlockIndex;
   @override
   @JsonKey(ignore: true)
   _$$_CubitStateCopyWith<_$_CubitState> get copyWith =>

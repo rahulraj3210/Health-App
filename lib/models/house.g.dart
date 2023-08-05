@@ -9,11 +9,9 @@ part of 'house.dart';
 _$_House _$$_HouseFromJson(Map<String, dynamic> json) => _$_House(
       id: json['id'] as int? ?? 0,
       infected: json['infected'] as bool? ?? false,
-      docId: json['docId'] as String?,
     );
 
 Map<String, dynamic> _$$_HouseToJson(_$_House instance) => <String, dynamic>{
       'id': instance.id,
       'infected': instance.infected,
-      'docId': instance.docId,
     };

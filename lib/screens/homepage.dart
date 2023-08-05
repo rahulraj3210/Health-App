@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_app/cubit/app_cubits.dart';
+import 'package:health_app/models/block.dart';
 import '../models/house.dart';
 
 class HomePage extends StatelessWidget {
@@ -43,7 +44,8 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 ListTile(
-                  title: Text("Total Clusters = ${state.totalCluster}"),
+                  title: Text(
+                      "Total Clusters = ${state.blocks[state.currentBlockIndex].clusterCount}"),
                 ),
                 GridView.builder(
                   shrinkWrap: true,
@@ -52,10 +54,11 @@ class HomePage extends StatelessWidget {
                     crossAxisSpacing: 3.0, // Spacing between columns
                     mainAxisSpacing: 3.0, // Spacing between rows
                   ),
-                  itemCount: state.houses.length,
+                  itemCount:
+                      state.blocks[state.currentBlockIndex].houses.length,
                   itemBuilder: (context, index) {
                     return BlockItem(
-                      data: state.houses[index],
+                      data: state.blocks[state.currentBlockIndex].houses[index],
                       index: index,
                     );
                   },
