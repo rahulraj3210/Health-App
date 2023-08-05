@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/rendering.dart';
@@ -13,8 +15,9 @@ part 'app_states.dart';
 const blockCollection = 'Block_list';
 
 class AppCubits extends Cubit<CubitState> {
-  AppCubits() : super(CubitState());
-
+  AppCubits() : super(CubitState()) {
+    init();
+  }
   Stream<List<Block>> readhouse() => FirebaseFirestore.instance
       .collection(blockCollection)
       .snapshots()
@@ -23,6 +26,7 @@ class AppCubits extends Cubit<CubitState> {
           .toList());
   void init() {
     readhouse().listen((blocksss) {
+      print(blocksss);
       blocksss.sort((a, b) => a.id.compareTo(b.id));
       emit(state.copyWith(blocks: blocksss));
       totalCluster();
