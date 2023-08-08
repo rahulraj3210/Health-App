@@ -30,7 +30,15 @@ class BlockView extends StatelessWidget {
                     child: Text(
                       "ADD",
                       style: TextStyle(color: Colors.green),
-                    ))
+                    )),
+                TextButton(
+                    onPressed: () {
+                      BlocProvider.of<AppCubits>(context).removeblock();
+                    },
+                    child: Text(
+                      "DELETE",
+                      style: TextStyle(color: Colors.red),
+                    )),
               ],
             ),
             body: ListView.builder(
@@ -50,6 +58,7 @@ class BlockView extends StatelessWidget {
                                   child: HomePage(),
                                 )));
                   },
+                  subtitle: Text("Cluster Count=${block.clusterCount}"),
                 );
               },
               itemCount: state.blocks.length,

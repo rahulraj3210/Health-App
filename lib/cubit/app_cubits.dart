@@ -53,6 +53,19 @@ class AppCubits extends Cubit<CubitState> {
     emit(state.copyWith(blocks: blocks));
   }
 
+  Future removeblock() async {
+    final List<Block> blocks = List.from(state.blocks);
+    if (blocks.isNotEmpty) {
+      final lastBlock = blocks.last;
+      blocks.removeLast();
+      await FirebaseFirestore.instance
+          .collection(blockCollection)
+          .doc(lastBlock.docId)
+          .delete();
+      emit(state.copyWith(blocks: blocks));
+    }
+  }
+
   Future addHouse() async {
     final List<Block> blocks = List.from(state.blocks);
     final index = state.currentBlockIndex;
