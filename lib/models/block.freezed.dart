@@ -23,6 +23,7 @@ mixin _$Block {
   List<House> get houses => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   int get clusterCount => throw _privateConstructorUsedError;
+  List<List<House>> get clusters => throw _privateConstructorUsedError;
   String? get docId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,12 @@ abstract class $BlockCopyWith<$Res> {
   factory $BlockCopyWith(Block value, $Res Function(Block) then) =
       _$BlockCopyWithImpl<$Res, Block>;
   @useResult
-  $Res call({List<House> houses, int id, int clusterCount, String? docId});
+  $Res call(
+      {List<House> houses,
+      int id,
+      int clusterCount,
+      List<List<House>> clusters,
+      String? docId});
 }
 
 /// @nodoc
@@ -54,6 +60,7 @@ class _$BlockCopyWithImpl<$Res, $Val extends Block>
     Object? houses = null,
     Object? id = null,
     Object? clusterCount = null,
+    Object? clusters = null,
     Object? docId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -69,6 +76,10 @@ class _$BlockCopyWithImpl<$Res, $Val extends Block>
           ? _value.clusterCount
           : clusterCount // ignore: cast_nullable_to_non_nullable
               as int,
+      clusters: null == clusters
+          ? _value.clusters
+          : clusters // ignore: cast_nullable_to_non_nullable
+              as List<List<House>>,
       docId: freezed == docId
           ? _value.docId
           : docId // ignore: cast_nullable_to_non_nullable
@@ -83,7 +94,12 @@ abstract class _$$_BlockCopyWith<$Res> implements $BlockCopyWith<$Res> {
       __$$_BlockCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<House> houses, int id, int clusterCount, String? docId});
+  $Res call(
+      {List<House> houses,
+      int id,
+      int clusterCount,
+      List<List<House>> clusters,
+      String? docId});
 }
 
 /// @nodoc
@@ -98,6 +114,7 @@ class __$$_BlockCopyWithImpl<$Res> extends _$BlockCopyWithImpl<$Res, _$_Block>
     Object? houses = null,
     Object? id = null,
     Object? clusterCount = null,
+    Object? clusters = null,
     Object? docId = freezed,
   }) {
     return _then(_$_Block(
@@ -113,6 +130,10 @@ class __$$_BlockCopyWithImpl<$Res> extends _$BlockCopyWithImpl<$Res, _$_Block>
           ? _value.clusterCount
           : clusterCount // ignore: cast_nullable_to_non_nullable
               as int,
+      clusters: null == clusters
+          ? _value.clusters
+          : clusters // ignore: cast_nullable_to_non_nullable
+              as List<List<House>>,
       docId: freezed == docId
           ? _value.docId
           : docId // ignore: cast_nullable_to_non_nullable
@@ -129,6 +150,7 @@ class _$_Block extends _Block {
       {this.houses = const [House(id: 1)],
       this.id = 1,
       this.clusterCount = 0,
+      this.clusters = const [],
       this.docId})
       : super._();
 
@@ -145,11 +167,14 @@ class _$_Block extends _Block {
   @JsonKey()
   final int clusterCount;
   @override
+  @JsonKey()
+  final List<List<House>> clusters;
+  @override
   final String? docId;
 
   @override
   String toString() {
-    return 'Block(houses: $houses, id: $id, clusterCount: $clusterCount, docId: $docId)';
+    return 'Block(houses: $houses, id: $id, clusterCount: $clusterCount, clusters: $clusters, docId: $docId)';
   }
 
   @override
@@ -161,13 +186,19 @@ class _$_Block extends _Block {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.clusterCount, clusterCount) ||
                 other.clusterCount == clusterCount) &&
+            const DeepCollectionEquality().equals(other.clusters, clusters) &&
             (identical(other.docId, docId) || other.docId == docId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(houses), id, clusterCount, docId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(houses),
+      id,
+      clusterCount,
+      const DeepCollectionEquality().hash(clusters),
+      docId);
 
   @JsonKey(ignore: true)
   @override
@@ -188,6 +219,7 @@ abstract class _Block extends Block {
       {final List<House> houses,
       final int id,
       final int clusterCount,
+      final List<List<House>> clusters,
       final String? docId}) = _$_Block;
   const _Block._() : super._();
 
@@ -199,6 +231,8 @@ abstract class _Block extends Block {
   int get id;
   @override
   int get clusterCount;
+  @override
+  List<List<House>> get clusters;
   @override
   String? get docId;
   @override

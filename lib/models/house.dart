@@ -10,6 +10,7 @@ class House with _$House {
   const factory House({
     @Default(0) int id,
     @Default(false) bool infected,
+    @Default(0) int clusterNumber,
   }) = _House;
   factory House.fromJson(Map<String, dynamic> json) => _$HouseFromJson(json);
 }

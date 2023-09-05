@@ -22,6 +22,7 @@ House _$HouseFromJson(Map<String, dynamic> json) {
 mixin _$House {
   int get id => throw _privateConstructorUsedError;
   bool get infected => throw _privateConstructorUsedError;
+  int get clusterNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $HouseCopyWith<$Res> {
   factory $HouseCopyWith(House value, $Res Function(House) then) =
       _$HouseCopyWithImpl<$Res, House>;
   @useResult
-  $Res call({int id, bool infected});
+  $Res call({int id, bool infected, int clusterNumber});
 }
 
 /// @nodoc
@@ -51,6 +52,7 @@ class _$HouseCopyWithImpl<$Res, $Val extends House>
   $Res call({
     Object? id = null,
     Object? infected = null,
+    Object? clusterNumber = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -61,6 +63,10 @@ class _$HouseCopyWithImpl<$Res, $Val extends House>
           ? _value.infected
           : infected // ignore: cast_nullable_to_non_nullable
               as bool,
+      clusterNumber: null == clusterNumber
+          ? _value.clusterNumber
+          : clusterNumber // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -71,7 +77,7 @@ abstract class _$$_HouseCopyWith<$Res> implements $HouseCopyWith<$Res> {
       __$$_HouseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, bool infected});
+  $Res call({int id, bool infected, int clusterNumber});
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class __$$_HouseCopyWithImpl<$Res> extends _$HouseCopyWithImpl<$Res, _$_House>
   $Res call({
     Object? id = null,
     Object? infected = null,
+    Object? clusterNumber = null,
   }) {
     return _then(_$_House(
       id: null == id
@@ -95,6 +102,10 @@ class __$$_HouseCopyWithImpl<$Res> extends _$HouseCopyWithImpl<$Res, _$_House>
           ? _value.infected
           : infected // ignore: cast_nullable_to_non_nullable
               as bool,
+      clusterNumber: null == clusterNumber
+          ? _value.clusterNumber
+          : clusterNumber // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -103,7 +114,8 @@ class __$$_HouseCopyWithImpl<$Res> extends _$HouseCopyWithImpl<$Res, _$_House>
 
 @JsonSerializable(explicitToJson: true)
 class _$_House extends _House {
-  const _$_House({this.id = 0, this.infected = false}) : super._();
+  const _$_House({this.id = 0, this.infected = false, this.clusterNumber = 0})
+      : super._();
 
   factory _$_House.fromJson(Map<String, dynamic> json) =>
       _$$_HouseFromJson(json);
@@ -114,10 +126,13 @@ class _$_House extends _House {
   @override
   @JsonKey()
   final bool infected;
+  @override
+  @JsonKey()
+  final int clusterNumber;
 
   @override
   String toString() {
-    return 'House(id: $id, infected: $infected)';
+    return 'House(id: $id, infected: $infected, clusterNumber: $clusterNumber)';
   }
 
   @override
@@ -127,12 +142,14 @@ class _$_House extends _House {
             other is _$_House &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.infected, infected) ||
-                other.infected == infected));
+                other.infected == infected) &&
+            (identical(other.clusterNumber, clusterNumber) ||
+                other.clusterNumber == clusterNumber));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, infected);
+  int get hashCode => Object.hash(runtimeType, id, infected, clusterNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -149,7 +166,8 @@ class _$_House extends _House {
 }
 
 abstract class _House extends House {
-  const factory _House({final int id, final bool infected}) = _$_House;
+  const factory _House(
+      {final int id, final bool infected, final int clusterNumber}) = _$_House;
   const _House._() : super._();
 
   factory _House.fromJson(Map<String, dynamic> json) = _$_House.fromJson;
@@ -158,6 +176,8 @@ abstract class _House extends House {
   int get id;
   @override
   bool get infected;
+  @override
+  int get clusterNumber;
   @override
   @JsonKey(ignore: true)
   _$$_HouseCopyWith<_$_House> get copyWith =>

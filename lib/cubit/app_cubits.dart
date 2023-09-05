@@ -46,10 +46,12 @@ class AppCubits extends Cubit<CubitState> {
     print(newBlock);
     print(newBlock.docId);
     blocks.add(newBlock);
+    var json = newBlock.toJson();
+    json["clusters"] = [];
     await FirebaseFirestore.instance
         .collection(blockCollection)
         .doc(newBlock.docId)
-        .set(newBlock.toJson());
+        .set(json);
     emit(state.copyWith(blocks: blocks));
   }
 
@@ -75,10 +77,12 @@ class AppCubits extends Cubit<CubitState> {
     list.add(newHouse);
     final newBLock = currentBLock.copyWith(houses: list);
     blocks.replaceRange(index, index + 1, [newBLock]);
+    var json = newBLock.toJson();
+    json["clusters"] = [];
     await FirebaseFirestore.instance
         .collection(blockCollection)
         .doc(newBLock.docId)
-        .set(newBLock.toJson());
+        .set(json);
     emit(state.copyWith(blocks: blocks));
   }
 
@@ -91,12 +95,21 @@ class AppCubits extends Cubit<CubitState> {
     final newHouseBlock = currentBLock.copyWith(houses: houses);
     blocks.removeAt(state.currentBlockIndex);
     blocks.insert(state.currentBlockIndex, newHouseBlock);
+    var json = newHouseBlock.toJson();
+    json["clusters"] = [];
     await FirebaseFirestore.instance
         .collection(blockCollection)
         .doc(newHouseBlock.docId)
-        .set(newHouseBlock.toJson());
+        .set(json);
 
     emit(state.copyWith(blocks: blocks));
+  }
+
+  void clusterNumber() {
+    final List<Block> blocks = List.from(state.blocks);
+    final currentBlockIndex = state.currentBlockIndex;
+    final List<House> houses = List.from(blocks[currentBlockIndex].houses);
+    int clusterNumber = 0;
   }
 
   Future toggleInfected(int index) async {
@@ -111,10 +124,12 @@ class AppCubits extends Cubit<CubitState> {
     houses.replaceRange(index, index + 1, [houseToggle]);
     final newBLock = currentBlock.copyWith(houses: houses);
     blocks.replaceRange(currentBlockIndex, currentBlockIndex + 1, [newBLock]);
+    var json = newBLock.toJson();
+    json["clusters"] = [];
     await FirebaseFirestore.instance
         .collection(blockCollection)
         .doc(newBLock.docId)
-        .set(newBLock.toJson());
+        .set(json);
     emit(state.copyWith(blocks: blocks));
     toggleCluster(index);
   }
@@ -319,10 +334,10 @@ class AppCubits extends Cubit<CubitState> {
       }
       notCheckedHouse.remove(house);
       checkedHouses.add(house);
-      print(notCheckedHouse);
-      print(checkedHouses);
+      // print(notCheckedHouse);
+      // print(checkedHouses);
     }
-    print(checkedHouses.length);
+
     totalCluster();
   }
 
@@ -332,6 +347,10 @@ class AppCubits extends Cubit<CubitState> {
     final currentBlock = blocks[currentBlockIndex];
     final List<House> houses = List.from(currentBlock.houses);
     final Set<House> checkedHouses = {};
+    Set<House> temp = {};
+    Set<House> tempList = {};
+    final List<List<House>> clusters = [];
+
     //final Set<House> newCheckedHouse = {};
     int count = 0;
     houses.forEach((element) {
@@ -517,14 +536,26 @@ class AppCubits extends Cubit<CubitState> {
         }
         print("/////////////////");
         print(checkedHouses.length);
-
+        // int? index;
+        // state.blocks[currentBlockIndex].clusters
+        //     .asMap()
+        //     .forEach((index, cluster) {
+        //   if (checkedHouses.forEach((element) {})) ;
+        // });
+        temp = Set.from(checkedHouses);
+        temp.removeAll(tempList);
+        tempList = Set.from(checkedHouses);
         count = count + 1;
         //newCheckedHouse.addAll(checkedHouses);
+        clusters.add(temp.toList());
       }
     });
+    print(clusters.length);
+    print(clusters);
     print('Count');
     print(count);
-    final newBlock = currentBlock.copyWith(clusterCount: count);
+    final newBlock =
+        currentBlock.copyWith(clusterCount: count, clusters: clusters);
     blocks.replaceRange(currentBlockIndex, currentBlockIndex + 1, [newBlock]);
     emit(state.copyWith(blocks: blocks));
   }

@@ -57,9 +57,20 @@ class HomePage extends StatelessWidget {
                   itemCount:
                       state.blocks[state.currentBlockIndex].houses.length,
                   itemBuilder: (context, index) {
+                    final house =
+                        state.blocks[state.currentBlockIndex].houses[index];
+                    final clusters =
+                        state.blocks[state.currentBlockIndex].clusters;
+                    List<House> cluster = [];
+                    clusters.forEach((element) {
+                      if (element.contains(house)) {
+                        cluster.addAll(element);
+                      }
+                    });
                     return BlockItem(
-                      data: state.blocks[state.currentBlockIndex].houses[index],
+                      data: house,
                       index: index,
+                      cluster: cluster.length,
                     );
                   },
                 ),
@@ -75,8 +86,9 @@ class HomePage extends StatelessWidget {
 class BlockItem extends StatelessWidget {
   final House data;
   final int index;
+  final int cluster;
 
-  BlockItem({required this.data, required this.index});
+  BlockItem({required this.data, required this.index, required this.cluster});
 
   @override
   Widget build(BuildContext context) {
@@ -86,12 +98,12 @@ class BlockItem extends StatelessWidget {
       },
       child: Card(
         color: data.infected
-            ? Colors.red
+            ? Colors.red[cluster * 100]
             : Colors.blue, // Customize the color as needed
         child: Center(
           child: Text(
             data.id.toString(),
-            style: TextStyle(color: Colors.white, fontSize: 18.0),
+            style: const TextStyle(color: Colors.white, fontSize: 18.0),
           ),
         ),
       ),
